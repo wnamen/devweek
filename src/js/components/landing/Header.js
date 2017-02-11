@@ -1,5 +1,8 @@
-import React, { Component } from "react"
-import $ from "jquery"
+import React, { Component } from "react";
+import { Button } from "react-materialize";
+import $ from "jquery";
+
+// import "../../../css/landing.css";
 
 
 // IMPORT OTHER COMPONENTS AND DEPENDENCIES HERE
@@ -12,6 +15,23 @@ export default class Header extends React.Component {
     }
   }
   //LOGIC HERE: CHECK OUT COMPONENT MOUNTING IF YOU WANT TO TRY IT OUT
+  onHandleFile = (e) => {
+    let self = this;
+    let path;
+    let filename;
+    $("#hiddenInput").trigger("click");
+    $('#hiddenInput').change(function() {
+        let file = $(this)[0].files[0];
+        path = $(this).val();
+        filename = path.replace(/^.*\\/, "");
+        $('.fileName').text(filename);
+        self.setState({
+          file: filename,
+          data: file
+        });
+    });
+  };
+
 
   render(){
     //RENDER LOGIC HERE
@@ -19,8 +39,12 @@ export default class Header extends React.Component {
     return(
       <div class="sixteen">
         <section class="hero electric-blue-light-background text-center">
-          <h1 class="hh heroH1">React Boilerplate</h1>
-          <h6 class="gray text-center hh heroH6">Start building with React today!</h6>
+          <h1 class="hh heroH1">easypay</h1>
+          <h6 class="gray text-center hh heroH6">Set up an auto payment today!</h6>
+          <div class="two electric-blue-background file-input">
+            <input type="file" accept=".pdf" id="hiddenInput" class="lgnBtn settingsBtn lgnBtnLg smoothBkgd electric-blue-background white inline-block signupBtn hidden"></input>
+            <a class="contact-upload white" onClick={this.onHandleFile}>Upload PDF</a>
+          </div>
         </section>
       </div>
     )

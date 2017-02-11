@@ -28,6 +28,22 @@
     font-size: 1.6em;
 }
 
+.file-input {
+    position: relative;
+    cursor: pointer;
+}
+
+.file-input input[type=file]{
+    opacity: 0;
+    cursor: pointer;
+    width: 160px;
+    height: 50px;
+    font-size: 0;
+    position: absolute;
+    top: 0;
+    left: calc(50% - 80px);
+}
+
 .fIcon{
 	width: 30%;
 	min-width: 50px;
