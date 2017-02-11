@@ -1,6 +1,7 @@
 const express = require('express'),
       app = express.Router();
 
+'use strict';
 // Imports the Google Cloud client library
 const Vision = require('@google-cloud/vision');
 
@@ -11,19 +12,20 @@ const vision = Vision();
 const fileName = '../public/images/example-expense-report.png';
 
 app.get('/test', function (req, res) {
-  res.json({message: "we are here"})
-
+  // res.json({message: "we are here"})
+  // console.log(vision)
 
   // Performs text detection on the local file
-  // vision.detectText(fileName)
-  //   .then((results) => {
-  //     const detections = results[0];
-  //
-  //     console.log('Text:');
-  //     detections.forEach((text) => console.log(text));
-  //   });
+  var result = vision.detectText(fileName)
+    .then((results) => {
+      console.log(results)
+      const detections = results[0];
 
+      console.log('Text:');
+      detections.forEach((text) => console.log(text));
+    });
 
+  console.log(result)
 })
 
 module.exports = app;
