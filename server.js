@@ -20,6 +20,9 @@ app.use(express.static(__dirname))
 const googleVisionApi = require('./backend/google-vision.js');
 app.use('/api/vision', googleVisionApi);
 
+const flowRouteAPI = require('./backend/flowroutes.js');
+app.use('/api/flowroutes', flowRouteAPI);
+
 app.get('/test', function (req, res) {
   res.send( "hey" )
 })
