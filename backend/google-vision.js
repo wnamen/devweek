@@ -11,8 +11,10 @@ var gcloud = require('gcloud')({
 var vision = gcloud.vision();
 
 app.get('/data', function (req, res) {
-  console.log(Payment.find({}))
-
+  Payment.findOne({}, {}, { sort: { 'created_at' : -1 } }, function(err, post) {
+  if(err){console.log(err)}
+  console.log( post );
+  })
 })
 
 app.post('/test', function(req, res) {
@@ -37,8 +39,6 @@ app.post('/test', function(req, res) {
   });
 
   res.redirect('/customize')
-
-
 });
 
 
