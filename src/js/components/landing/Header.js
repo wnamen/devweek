@@ -31,7 +31,7 @@ export default class Header extends React.Component {
         Axios.post('/api/vision/test', { user: "BEN", image: result[0].url, phoneNumber: '555-555-5555'} )
           .then(function(res){
             // redirect to success
-            browserHistory.push('/success')
+            browserHistory.push('/customize')
           })
       });
     }
