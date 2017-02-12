@@ -1,7 +1,38 @@
-var mongoose = require("mongoose");
+var express = require('express');
+var app = express();
+var mongoose = require('mongoose');
+var Payment = require('payments.js');
 
-mongoose.Promise = global.Promise;
+// var flowRouteKey = process.env.FLOWROUTEAPIKEY;
+// var flowRouteSecret = process.env.FLOWROUTEAPISECRET;
+// var fromNumber = process.env.FLOWROUTENUMBER;
+// var mlabUri = process.env.MLABADDRESS;
 
-mongoose.createConnection(process.env.MONGOLAB_COBALT_URI ||"mongodb://localhost/payment-database");
+var db = mongoose.connection;
 
-module.exports.Payment = require("./payments");
+
+// Post request to send message
+app.post('https://api.flowroute.com/v2/messages', function (req, res, err) {
+  if (err) return console.log(err);
+  res.send({
+    "to":"17632760478",
+    "from":fromNumber,
+    "body":"sample request"
+  });
+});
+
+app.post('/payments', function (req,res){
+  console.log('Open!');
+
+  var newPayment = new Payment({
+    user:req.query.amount,
+    image:req.query.amount,
+    phoneNumber:req.query.amount
+  });
+
+  db.collections.payments.save(newPayment);
+  res.send(newPayment);
+
+});
+
+module.exports = app;

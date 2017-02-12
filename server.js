@@ -3,14 +3,19 @@ var express = require('express')
 var path = require('path')
 var app = express()
 var bodyParser = require('body-parser')
-
-var db = require('./backend/models');
+var mongoose = require('mongoose');
+var db = require('mongodb');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // ENV file setup
 require('dotenv').config();
+
+// Database Connection
+mongoose.Promise = global.Promise
+var mlabUri = process.env.MLABADDRESS;
+mongoose.connect(mlabUri);
 
 // serve our static stuff like index.css
 app.use(express.static(__dirname))

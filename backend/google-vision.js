@@ -1,7 +1,10 @@
 const express = require('express'),
       app = express.Router(),
-      cloudinary = require('cloudinary');
-var Payment = require('./models/payments');
+      cloudinary = require('cloudinary'),
+      mongoose = require('mongoose'),
+      db = mongoose.connection;
+var Payment = require('./models/payments.js');
+
 
 // configs
 cloudinary.config({
@@ -17,8 +20,7 @@ var gcloud = require('gcloud')({
 var vision = gcloud.vision();
 
 app.get('/data', function (req, res) {
-  console.log(Payment.find({}))
-
+  
 })
 
 app.post('/test', function(req, res) {
@@ -27,16 +29,12 @@ app.post('/test', function(req, res) {
   console.log(imageLink)
 
   var newPayment = new Payment ({
-    user: "Ben",
+    user: "Mikey",
     image: imageLink.image,
-    phoneNumber: '555-555-5555'
+    phoneNumber: '555-444-444'
   })
 
-  newPayment.save(function(err, success) {
-    if (err) { console.log(err) }
-    console.log("Post Success: " + success )
-
-  })
+  newPayment.save();
 
   vision.detectText(imageLink, function(err, text, apiResponse) {
     if(err){ console.log(err) }
