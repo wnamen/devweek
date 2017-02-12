@@ -17,8 +17,10 @@ var gcloud = require('gcloud')({
 var vision = gcloud.vision();
 
 app.get('/data', function (req, res) {
-  console.log(Payment.find({}))
-
+  Payment.findOne({}, {}, { sort: { 'created_at' : -1 } }, function(err, post) {
+  if(err){console.log(err)}
+  console.log( post );
+  })
 })
 
 app.post('/test', function(req, res) {
@@ -40,11 +42,10 @@ app.post('/test', function(req, res) {
 
   vision.detectText(imageLink, function(err, text, apiResponse) {
     if(err){ console.log(err) }
-    res.json(text)
   });
 
 
-  res.redirect('/success')
+  res.redirect('/customize')
 });
 
 
