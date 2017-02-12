@@ -5,18 +5,6 @@ const express = require('express'),
       db = mongoose.connection;
 var Payment = require('./models/payments.js');
 
-
-function getMethods(obj)
-{
-    var res = [];
-    for(var m in obj) {
-        if(typeof obj[m] == "function") {
-            res.push(m)
-        }
-    }
-    return res;
-}
-
 // configs
 cloudinary.config({
   cloud_name: 'dev-week-hack',
@@ -31,18 +19,20 @@ var gcloud = require('gcloud')({
 var vision = gcloud.vision();
 
 app.get('/data', function (req, res) {
+
   Payment.find({}, function(err, payments) {
+    if (err) return err;
     res.send(payments.reduce(function(payMap, item) {
         payMap[item.id] = item;
         return payMap;
     }, {}));
-});
+  });
+
 })
 
 app.post('/test', function(req, res) {
 
   var imageLink = req.body.image
-  console.log(imageLink)
 
   var newPayment = new Payment ({
     user: "Mikey",
@@ -54,7 +44,7 @@ app.post('/test', function(req, res) {
 
   vision.detectText(imageLink, function(err, text, apiResponse) {
     if(err){ console.log(err) }
-    res.json(text)
+    console.log(res.json(text));
   });
 
 
