@@ -23,6 +23,9 @@ app.use(express.static(__dirname))
 const googleVisionApi = require('./backend/google-vision.js');
 app.use('/api/vision', googleVisionApi);
 
+const encryption = require('./backend/encryption.js');
+app.use('/api/encryption', encryption);
+
 // send all requests to index.html so browserHistory in React Router works
 app.get('*', function (req, res) {
   res.sendFile(__dirname + '/public/index.html')

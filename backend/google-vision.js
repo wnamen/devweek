@@ -19,6 +19,7 @@ var gcloud = require('gcloud')({
 var vision = gcloud.vision();
 
 app.get('/data', function (req, res) {
+<<<<<<< HEAD
 
   Payment.find({}, function(err, payments) {
     if (err) return err;
@@ -28,6 +29,12 @@ app.get('/data', function (req, res) {
     }, {}));
   });
 
+=======
+  Payment.findOne({}, {}, { sort: { 'created_at' : -1 } }, function(err, post) {
+  if(err){console.log(err)}
+  console.log( post );
+  })
+>>>>>>> f8281c38a73057afb0966b1a911a5f1a10a5695e
 })
 
 app.post('/test', function(req, res) {
@@ -44,11 +51,14 @@ app.post('/test', function(req, res) {
 
   vision.detectText(imageLink, function(err, text, apiResponse) {
     if(err){ console.log(err) }
+<<<<<<< HEAD
     console.log(res.json(text));
+=======
+>>>>>>> f8281c38a73057afb0966b1a911a5f1a10a5695e
   });
 
 
-  res.redirect('/success')
+  res.redirect('/customize')
 });
 
 
