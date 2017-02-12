@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 require('dotenv').config();
 
 // Database Connection
+mongoose.Promise = global.Promise
 var mlabUri = process.env.MLABADDRESS;
 mongoose.connect(mlabUri);
 
