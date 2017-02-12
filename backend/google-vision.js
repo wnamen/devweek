@@ -3,12 +3,6 @@ const express = require('express'),
       cloudinary = require('cloudinary');
 var Payment = require('./models/payments');
 
-// configs
-cloudinary.config({
-  cloud_name: 'dev-week-hack',
-  api_key: process.env.IMAGE_KEY,
-  api_secret: process.env.IMAGE_SECRET
-});
 var gcloud = require('gcloud')({
   keyFilename: 'key.json',
   projectId: 'dev-week-hack'
@@ -35,15 +29,16 @@ app.post('/test', function(req, res) {
   newPayment.save(function(err, success) {
     if (err) { console.log(err) }
     console.log("Post Success: " + success )
-
   })
 
   vision.detectText(imageLink, function(err, text, apiResponse) {
     if(err){ console.log(err) }
+    console.log(text)
   });
 
-
   res.redirect('/customize')
+
+
 });
 
 
