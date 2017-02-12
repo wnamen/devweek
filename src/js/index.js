@@ -7,7 +7,11 @@ import $                                               from "jquery";
 
 import Layout                                          from "./pages/Layout";
 import Landing                                         from "./pages/Landing";
+import Customize                                       from "./pages/Customize";
+import Payment                                         from "./pages/Payment";
+import Success                                         from "./pages/Success";
 import Settings                                        from "./pages/Settings";
+
 import ServerError                                     from "./pages/ServerError";
 import NotFound                                        from "./pages/NotFound";
 
@@ -80,7 +84,9 @@ ReactDOM.render(
   <Router history={browserHistory}>
     <Route path="/" component={Layout} >
       <IndexRoute component={Landing} />
-
+      <Route path="customize" name="customize" component={Customize} />
+      <Route path="payment" name="payment" component={Payment} />
+      <Route path="success" name="success" component={Success} />
       <Route path="settings" name="settings" component={Settings} />
       <Route path="500" name="serverError" component={ServerError} />
       <Route path="*" name="notFound" component={NotFound} />

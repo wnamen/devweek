@@ -15,9 +15,11 @@ class Nav extends Component {
         <nav class="navbar navbar-fixed white-background">
           <div class="nav-wrapper medium-vertical-padding">
             <ul id="nav-links" class="nav-hover">
-              <li><IndexLink class="medium-right-border gray-border" to="/" ><strong>Home</strong></IndexLink></li>
+              <li><IndexLink class="medium-right-border gray-border" to="/" ><strong>easypay</strong></IndexLink></li>
+              <li><IndexLink to="/customize" activeClassName="active">Customize</IndexLink></li>
+              <li><IndexLink to="/payment" activeClassName="active">Payment</IndexLink></li>
+              <li><IndexLink to="/success" activeClassName="active">Success</IndexLink></li>
             </ul>
-
             <div class="right">
               <ul>
                 <li id="settings-button" class="large-right-margin nav-hover">
