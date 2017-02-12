@@ -13,6 +13,7 @@ var gcloud = require('gcloud')({
   keyFilename: 'key.json',
   projectId: 'dev-week-hack'
 });
+
 var finalImage;
 const fileName = './public/images/example-expense-report.png';
 cloudinary.uploader.upload(fileName, function(result) {
@@ -31,6 +32,7 @@ app.get('/test', function(req, res) {
 });
 
 app.get('/cloud_test', function(req, res) {
+
   vision.detectText(finalImage, function(err, text, apiResponse) {
     if(err){ console.log(err) }
     res.send(text)
