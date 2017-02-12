@@ -1,29 +1,24 @@
 const express = require('express'),
       app = express.Router();
 
-// Imports the Google Cloud client library
-const Vision = require('@google-cloud/vision');
+var gcloud = require('gcloud')({
+  keyFilename: 'key.json',
+  projectId: 'dev-week-hack'
+});
 
-// Instantiates a client
-const vision = Vision();
-
-// The path to the local image file, e.g. "/path/to/image.png"
-const fileName = '../public/images/example-expense-report.png';
-
-app.get('/test', function (req, res) {
-  res.json({message: "we are here"})
+var vision = gcloud.vision();
 
 
-  // Performs text detection on the local file
-  // vision.detectText(fileName)
-  //   .then((results) => {
-  //     const detections = results[0];
-  //
-  //     console.log('Text:');
-  //     detections.forEach((text) => console.log(text));
-  //   });
+const fileName = './public/images/example-expense-report.png';
 
+app.get('/test', function(req, res) {
+  vision.detectText(fileName, function(err, text, apiResponse) {
+    if(err){ console.log(err) }
+    console.log(text)
 
-})
+    res.send(text)
+  });
+});
+
 
 module.exports = app;
