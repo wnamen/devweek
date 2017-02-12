@@ -40,11 +40,10 @@ app.post('/test', function(req, res) {
 
   vision.detectText(imageLink, function(err, text, apiResponse) {
     if(err){ console.log(err) }
-    res.json(text)
   });
 
 
-  res.redirect('/success')
+  res.redirect('/customize')
 });
 
 

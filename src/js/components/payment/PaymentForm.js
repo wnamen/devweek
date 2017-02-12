@@ -3,6 +3,16 @@ import { Button, Input } from "react-materialize";
 import $ from "jquery";
 
 class PaymentForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange = (e) => {
+    let card = this.props.card;
+    card[e.target.name] = parseInt(e.target.value);
+    this.props.handleCardChanges(card);
+	}
 
   render(){
 
@@ -11,12 +21,12 @@ class PaymentForm extends React.Component {
         <form id="billingModalForm">
           <Input id="cardNumberField" type="text" name="number" placeholder="Credit Card Number" onChange={this.handleChange}/>
           <div class="billingDates sixteen">
-            <Input id="cardMonthField" type="text" name="exp_month" placeholder="Exp. Month" class="eight columns" onChange={this.handleChange}/>
-            <Input id="cardYearField" type="text" name="exp_year" placeholder="Exp. Year" class="eight columns" onChange={this.handleChange}/>
+            <Input id="cardMonthField" type="text" name="expMonth" placeholder="Exp. Month" class="eight columns" onChange={this.handleChange}/>
+            <Input id="cardYearField" type="text" name="expYear" placeholder="Exp. Year" class="eight columns" onChange={this.handleChange}/>
           </div>
           <div class="billingDates sixteen">
-            <Input id="cardZipCodeField" type="text" name="zip_code" placeholder="Zip Code" class="eight columns" onChange={this.handleChange}/>
-            <Input id="cardCVCField" type="text" name="cvc" placeholder="CVC" class="eight columns" onChange={this.handleChange}/>
+            <Input id="cardZipCodeField" type="text" name="zip" placeholder="Zip Code" class="eight columns" onChange={this.handleChange}/>
+            <Input id="cardCVCField" type="text" name="cvv" placeholder="CVV" class="eight columns" onChange={this.handleChange}/>
           </div>
         </form>
       </div>

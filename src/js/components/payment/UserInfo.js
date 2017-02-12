@@ -7,11 +7,14 @@ import $ from "jquery";
 export default class UserInfo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      // COMPONENT STATE DECLARTION HERE
-    }
+    this.handleChange = this.handleChange.bind(this);
   }
-  //LOGIC HERE: CHECK OUT COMPONENT MOUNTING IF YOU WANT TO TRY IT OUT
+
+  handleChange = (e) => {
+    let user = this.props.user;
+    user[e.target.name] = parseInt(e.target.value);
+    this.props.handleUserChanges(user);
+	}
 
   render(){
     //RENDER LOGIC HERE

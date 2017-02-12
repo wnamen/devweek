@@ -83,7 +83,7 @@ export default class Header extends React.Component {
     return(
       <div class="sixteen">
         <section class="hero electric-blue-light-background text-center">
-          <h1 class="hh heroH1">easypay</h1>
+          <h1 class="hh heroH1">EasyPay</h1>
           <h6 class="gray text-center hh heroH6">Set up an auto payment today!</h6>
           <div>
             <button onClick={this.uploadWidget.bind(this)} className="upload-button two electric-blue-background file-input contact-upload white">
