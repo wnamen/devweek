@@ -1,7 +1,7 @@
 const express = require('express'),
       app = express.Router(),
       cloudinary = require('cloudinary');
-
+var Payment = require('./models/payments');
 
 // configs
 cloudinary.config({
@@ -14,29 +14,37 @@ var gcloud = require('gcloud')({
   projectId: 'dev-week-hack'
 });
 
-var finalImage;
-const fileName = './public/images/example-expense-report.png';
-cloudinary.uploader.upload(fileName, function(result) {
-  console.log(result)
-  finalImage = result.url
-});
-
 var vision = gcloud.vision();
 
+app.get('/data', function (req, res) {
+  console.log(Payment.find({}))
 
-app.get('/test', function(req, res) {
-  vision.detectText(finalImage, function(err, text, apiResponse) {
+})
+
+app.post('/test', function(req, res) {
+
+  var imageLink = req.body.image
+  console.log(imageLink)
+
+  var newPayment = new Payment ({
+    user: "Ben",
+    image: imageLink.image,
+    phoneNumber: '555-555-5555'
+  })
+
+  newPayment.save(function(err, success) {
+    if (err) { console.log(err) }
+    console.log("Post Success: " + success )
+
+  })
+
+  vision.detectText(imageLink, function(err, text, apiResponse) {
     if(err){ console.log(err) }
-    res.send(text)
+    res.json(text)
   });
-});
 
-app.get('/cloud_test', function(req, res) {
 
-  vision.detectText(finalImage, function(err, text, apiResponse) {
-    if(err){ console.log(err) }
-    res.send(text)
-  });
+  res.redirect('/success')
 });
 
 
