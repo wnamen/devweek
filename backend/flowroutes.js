@@ -18,7 +18,7 @@ app.post('https://api.flowroute.com/v2/messages', function (req, res, err) {
 });
 
 app.get('/responses', function (req,res){
-  res.send('Hello World!');
+  
 });
 
 module.exports = app;
