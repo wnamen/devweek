@@ -5,7 +5,12 @@
   "dependencies": {
     "@google-cloud/vision": "^0.8.0",
     "dotenv": "^4.0.0",
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "gcloud": "^0.37.0",
+    "googleapis": "^16.1.0",
+    "lodash": "^4.17.4",
+    "node-cloud-vision-api": "^0.2.0",
+    "unirest": "^0.5.1"
   },
   "scripts": {
     "start": "nodemon server.js"
