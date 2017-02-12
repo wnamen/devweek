@@ -4,17 +4,10 @@ var path = require('path')
 var app = express()
 var bodyParser = require('body-parser')
 
-var config = require('./backend/config');
-var cloudVisionClient = require('./backend/cloudVisionClient')(
-  config.gcloudVision
-);
+var db = require('./backend/models');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
-// var server = new express.Router();
-// Need to add database
-
 
 // ENV file setup
 require('dotenv').config();
@@ -25,9 +18,6 @@ app.use(express.static(__dirname))
 const googleVisionApi = require('./backend/google-vision.js');
 app.use('/api/vision', googleVisionApi);
 
-app.get('/test', function (req, res) {
-  res.send( "hey" )
-})
 // send all requests to index.html so browserHistory in React Router works
 app.get('*', function (req, res) {
   res.sendFile(__dirname + '/public/index.html')
