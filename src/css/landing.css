@@ -28,6 +28,24 @@
     font-size: 1.6em;
 }
 
+.file-input {
+    position: relative;
+    cursor: pointer;
+		top: 8em;
+		border: none;
+}
+
+.file-input input[type=file]{
+    opacity: 0;
+    cursor: pointer;
+    width: 160px;
+    height: 50px;
+    font-size: 0;
+    position: absolute;
+    top: 0;
+    left: calc(50% - 80px);
+}
+
 .fIcon{
 	width: 30%;
 	min-width: 50px;
@@ -155,6 +173,39 @@
 .legalRow{
     margin-top: 3em;
 }
+
+.customizeContainer {
+    overflow: hidden;
+    background-size: 23% 23%,23% 23%;
+    background-position: bottom left,bottom right;
+    background-repeat: no-repeat, no-repeat;
+}
+
+.customizeH6{
+	font-size: 1.5em;
+	margin: 30px auto;
+}
+
+.image-container {
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+
+.image {
+	height: 300px;
+}
+
+.custom-fields {
+	display: flex;
+	flex-direction: row;
+	margin: 10px 20px;
+	justify-content: space-between;
+}
+
+.input-field input[type=text] {
+	background-color: white;
+}
+
 @media screen and (max-width:800px){
     .hero{
         height: 85vh;
