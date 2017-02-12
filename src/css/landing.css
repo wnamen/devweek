@@ -31,6 +31,8 @@
 .file-input {
     position: relative;
     cursor: pointer;
+		top: 8em;
+		left: 43%;
 }
 
 .file-input input[type=file]{

@@ -29,6 +29,7 @@ export default class Header extends React.Component {
           file: filename,
           data: file
         });
+        self.context.router.push("/customize");
     });
   };
 
@@ -42,7 +43,7 @@ export default class Header extends React.Component {
           <h1 class="hh heroH1">easypay</h1>
           <h6 class="gray text-center hh heroH6">Set up an auto payment today!</h6>
           <div class="two electric-blue-background file-input">
-            <input type="file" accept=".pdf" id="hiddenInput" class="lgnBtn settingsBtn lgnBtnLg smoothBkgd electric-blue-background white inline-block signupBtn hidden"></input>
+            <input type="file" id="hiddenInput" class="lgnBtn settingsBtn lgnBtnLg smoothBkgd electric-blue-background white inline-block signupBtn hidden"></input>
             <a class="contact-upload white" onClick={this.onHandleFile}>Upload PDF</a>
           </div>
         </section>
@@ -50,3 +51,7 @@ export default class Header extends React.Component {
     )
   }
 }
+
+Header.contextTypes = {
+  router: React.PropTypes.object
+};
