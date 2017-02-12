@@ -3,8 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "cryptico": "^1.0.2",
     "dotenv": "^4.0.0",
     "express": "^4.14.0",
+    "rsa-pem-from-mod-exp": "^0.8.4",
     "gcloud": "^0.37.0",
     "googleapis": "^16.1.0",
     "lodash": "^4.17.4",
@@ -37,6 +39,7 @@
     "react-cookie": "^1.0.4",
     "react-css-modules": "^4.1.0",
     "react-dom": "^15.4.2",
+    "react-materialize": "^0.18.1",
     "react-router": "^3.0.2",
     "require": "^2.4.20",
     "style-loader": "^0.13.1",
