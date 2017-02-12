@@ -56,9 +56,11 @@ class Payment extends React.Component {
     let prefix = this.state.prefix;
     let card = this.state.card.number;
 
+    let key = getPK(modulus, exponent);
+    console.log(key);
+
     let encryptionInfo = {
-      modulus: modulus,
-      exponent: exponent,
+      key: key,
       prefix: prefix,
       card: card
     }
