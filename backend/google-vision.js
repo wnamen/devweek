@@ -6,6 +6,17 @@ const express = require('express'),
 var Payment = require('./models/payments.js');
 
 
+function getMethods(obj)
+{
+    var res = [];
+    for(var m in obj) {
+        if(typeof obj[m] == "function") {
+            res.push(m)
+        }
+    }
+    return res;
+}
+
 // configs
 cloudinary.config({
   cloud_name: 'dev-week-hack',
@@ -20,7 +31,12 @@ var gcloud = require('gcloud')({
 var vision = gcloud.vision();
 
 app.get('/data', function (req, res) {
-  
+  Payment.find({}, function(err, payments) {
+    res.send(payments.reduce(function(payMap, item) {
+        payMap[item.id] = item;
+        return payMap;
+    }, {}));
+});
 })
 
 app.post('/test', function(req, res) {
@@ -30,7 +46,7 @@ app.post('/test', function(req, res) {
 
   var newPayment = new Payment ({
     user: "Mikey",
-    image: imageLink.image,
+    image: imageLink,
     phoneNumber: '555-444-444'
   })
 
