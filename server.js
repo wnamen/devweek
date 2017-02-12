@@ -4,10 +4,6 @@ var path = require('path')
 var app = express()
 var bodyParser = require('body-parser')
 
-var config = require('./backend/config');
-var cloudVisionClient = require('./backend/cloudVisionClient')(
-  config.gcloudVision
-);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
