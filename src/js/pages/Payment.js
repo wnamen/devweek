@@ -36,9 +36,10 @@ class Payment extends React.Component {
 
     return (
       <div class="gray-light-background">
-        <div class="sixteen inline-block">
+        <div style={{"margin-top":"5em", "padding-top":"3em", "height":"55vh"}} class="sixteen inline-block electric-blue-light-background ">
           <UserInfo />
           <PaymentForm />
+          <div class="lgnBtn settingsBtn smoothBkgd electric-blue-background white cardSave" onClick={this.handleToken}>Create Auto-Payment</div>
         </div>
       </div>
     )

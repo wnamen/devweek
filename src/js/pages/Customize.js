@@ -9,7 +9,6 @@ const Customize = () => {
     <div class="gray-light-background">
       <div class="sixteen inline-block">
         <ImageShow />
-        <Customizer />
       </div>
     </div>
 

@@ -15,11 +15,40 @@ export default class Customizer extends React.Component {
 
   render(){
     //RENDER LOGIC HERE
+    let data = [
+      {
+        keyword: "total",
+        value: "$300.00"
+      },
+      {
+        keyword: "total",
+        value: "$300.00"
+      },
+      {
+        keyword: "total",
+        value: "$300.00"
+      },
+      {
+        keyword: "minimum payment due",
+        value: "$10.00"
+      }
+    ]
+    let mappedKeywords;
+
+    if (data !==undefined) {
+      mappedKeywords = data.map((pair, index) => {
+        return (
+          <div class="custom-fields" key={index}>
+            <Input value={pair.keyword}/>
+            <Input value={pair.value} />
+          </div>
+        )
+      })
+    }
 
     return(
-      <div class="sixteen columns gray-light-background">
-        <div class="text-center fpng">
-        </div>
+      <div class="text-center fpng">
+        { mappedKeywords }
       </div>
     )
   }
