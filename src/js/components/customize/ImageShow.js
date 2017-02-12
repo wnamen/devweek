@@ -22,6 +22,9 @@ export default class ImageShow extends React.Component {
         <section class="hero electric-blue-light-background text-center">
           <h6 class="gray text-center hh heroH6">Feel free to make any final adjustments.</h6>
         </section>
+        <div class="image-container">
+          <img src="public/images/example-expense-report.png" />
+        </div>
       </div>
     )
   }
