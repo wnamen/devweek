@@ -13,16 +13,17 @@ class Payment extends React.Component {
       modulus: "",
       exponent: "",
       prefix: "",
+      orderId: "",
       card: {
         number: "",
-        cvv: "",
+        cvv: "234",
         expMonth: "",
         expYear: "",
         zip: ""
       },
       user: {
         cellphone: "",
-        payment: "",
+        payment: 1000,
         begin_day: "",
         begin_month: "",
         exp_month: "",
@@ -37,12 +38,12 @@ class Payment extends React.Component {
 
   componentDidMount = () => {
     let orderData = {
-      state: "open",
-      total: 1000
+      "state": "open",
+      "total": 1000
     }
 
     axios.post('https://apisandbox.dev.clover.com/v3/merchants/SNRBNE29W2JEC/orders?access_token=e6acce96-0242-7cfe-39e0-02d47c424296', orderData)
-      .then(response => this.setState({orderId: response.id}))
+      .then(response => this.setState({orderId: response.data.id}))
       .catch(error => console.log(error))
 
     axios.get('https://sandbox.dev.clover.com/v2/merchant/SNRBNE29W2JEC/pay/key?access_token=e6acce96-0242-7cfe-39e0-02d47c424296')
@@ -78,8 +79,7 @@ class Payment extends React.Component {
     this.setState(user)
   }
 
-  handleSetUp = (key) => {
-    console.log(key);
+  handleSetUp = (encryptedCard) => {
 
     let cloverData = {
       "orderId": this.state.orderId,
@@ -87,16 +87,27 @@ class Payment extends React.Component {
       "zip": this.state.card.zip,
       "expMonth": this.state.card.expMonth,
       "cvv": this.state.card.cvv,
-      "amount": this.state.amount,
+      "amount": this.state.user.payment,
       "currency": "usd",
       "last4": "1111",
-      "token": "HCFFEAC222N02",
       "expYear": this.state.card.expYear,
       "first6": "411111",
-      "cardEncrypted": "X8UeKej+AEG1h0wD9Xw=="
+      "cardEncrypted": `${encryptedCard}`
     }
 
     axios.post('https://sandbox.dev.clover.com/v2/merchant/SNRBNE29W2JEC/pay?access_token=e6acce96-0242-7cfe-39e0-02d47c424296', cloverData)
+      .then(response => this.confirmWithUser(response))
+      .catch(error => console.log(error))
+  }
+
+  confirmWithUser = (response) => {
+    let message = {
+      to: "17632760478",
+      from: "19044067216",
+      body: "Your auto-payment has been set up!"
+    }
+
+    axios.post('https://api.flowroute.com/v2/messages', message)
       .then(response => console.log(response))
       .catch(error => console.log(error))
   }
