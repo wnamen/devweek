@@ -3,7 +3,7 @@ const express = require('express'),
       cloudinary = require('cloudinary');
 var Payment = require('./models/payments');
 
-var gcloud = require('gcloud')({
+var gcloud = require('google-cloud')({
   keyFilename: 'key.json',
   projectId: 'dev-week-hack'
 });
